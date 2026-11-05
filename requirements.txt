@@ -1,0 +1,9 @@
+# cuda-kernels-lab levels, tests, and runners run on the Python
+# standard library only. This file exists so Dependabot pip updates
+# have a manifest to watch.
+# One exception, stated plainly: level-3-deep/profiler_bench.py is a
+# GPU-node script that imports torch on the fleet GPU node (BlackBox).
+# Torch is not used by the CI tests or runners, is not installed in
+# CI, and is not pinned here, because its build depends on the GPU
+# node's CUDA setup.
+# If a real CI dependency is ever added, it is pinned here.
