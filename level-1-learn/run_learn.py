@@ -13,8 +13,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kernels import (matmul_naive, matmul_tiled, softmax_naive,
-                     softmax_stable, vector_add)
+from kernels import matmul_naive, matmul_tiled, softmax_naive, softmax_stable, vector_add
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
