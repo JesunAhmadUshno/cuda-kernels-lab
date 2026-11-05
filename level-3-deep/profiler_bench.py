@@ -27,7 +27,6 @@ import json
 import os
 import shutil
 import statistics
-import sys
 
 import torch
 from torch.profiler import ProfilerActivity, profile
