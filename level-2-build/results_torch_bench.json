@@ -1,0 +1,36 @@
+{
+  "device": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "compute_capability": "12.0",
+  "torch_version": "2.11.0+cu128",
+  "benchmarks": [
+    {
+      "kernel": "vector_add_torch",
+      "n": 4194304,
+      "median_ms": 0.132,
+      "gb_per_s": 381.3,
+      "correct": true
+    },
+    {
+      "kernel": "matmul_torch",
+      "size": 512,
+      "median_ms": 0.0761,
+      "gflops": 3529.07,
+      "correct": true
+    },
+    {
+      "kernel": "matmul_torch",
+      "size": 1024,
+      "median_ms": 0.3175,
+      "gflops": 6764.67,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_torch",
+      "rows": 4096,
+      "cols": 1024,
+      "median_ms": 0.0395,
+      "gb_per_s": 848.71,
+      "correct": true
+    }
+  ]
+}

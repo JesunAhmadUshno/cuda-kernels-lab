@@ -18,3 +18,13 @@ jobs:
         run: |
           g++ -std=c++17 -O2 -Wall -Wextra level-1-learn/cpp/bench_tool.cpp -o /tmp/bench_tool
           /tmp/bench_tool
+      - name: Level 2 Build unit tests
+        run: python -m unittest tests.test_build_kernels -v
+      - name: Level 2 Build runner
+        run: python level-2-build/run_build.py
+      - name: Level 2 C++ tests compile and run (g++ on ubuntu-latest)
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra level-2-build/cpp/tests.cpp -o /tmp/cpp_tests
+          /tmp/cpp_tests
+          g++ -std=c++17 -fsanitize=address,undefined -g level-2-build/cpp/tool.cpp -o /tmp/tool_asan
+          /tmp/tool_asan
