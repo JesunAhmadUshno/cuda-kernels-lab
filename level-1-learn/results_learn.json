@@ -1,0 +1,58 @@
+{
+  "all_pass": true,
+  "checks": [
+    {
+      "adds": 3,
+      "case": "vector_add_small",
+      "pass": true
+    },
+    {
+      "case": "matmul_2x2_hand",
+      "pass": true
+    },
+    {
+      "case": "matmul_3x3_tiled_tile2",
+      "pass": true
+    },
+    {
+      "case": "softmax_stable_large",
+      "pass": true
+    },
+    {
+      "case": "softmax_naive_overflows_large",
+      "pass": true
+    }
+  ],
+  "device": "CPU reference only, no CUDA GPU ran",
+  "level": "1-learn",
+  "load_table": [
+    {
+      "adds": 48,
+      "multiplies": 64,
+      "naive_element_loads": 128,
+      "results_identical": true,
+      "size": 4,
+      "tile": 2,
+      "tiled_tile_loads": 64
+    },
+    {
+      "adds": 448,
+      "multiplies": 512,
+      "naive_element_loads": 1024,
+      "results_identical": true,
+      "size": 8,
+      "tile": 2,
+      "tiled_tile_loads": 512
+    },
+    {
+      "adds": 3840,
+      "multiplies": 4096,
+      "naive_element_loads": 8192,
+      "results_identical": true,
+      "size": 16,
+      "tile": 4,
+      "tiled_tile_loads": 2048
+    }
+  ],
+  "project": "P04 cuda-kernels-lab"
+}

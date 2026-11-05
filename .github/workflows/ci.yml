@@ -10,3 +10,11 @@ jobs:
           python-version: "3.12"
       - name: scaffold smoke test
         run: python tests/test_smoke.py
+      - name: Level 1 Learn unit tests
+        run: python -m unittest tests.test_learn_kernels -v
+      - name: Level 1 Learn runner
+        run: python level-1-learn/run_learn.py
+      - name: C++ bench tool compile and self check (g++ on ubuntu-latest)
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra level-1-learn/cpp/bench_tool.cpp -o /tmp/bench_tool
+          /tmp/bench_tool
