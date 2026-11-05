@@ -1,0 +1,38 @@
+{
+  "cpp_deep_tests_passed": 15,
+  "cpp_build_tests_passed": 16,
+  "asan_ubsan_deep_tool": "clean",
+  "asan_ubsan_build_tool": "clean",
+  "atomics": {
+    "threads": 4,
+    "per_thread": 250000,
+    "relaxed_total": 1000000,
+    "relaxed_ms": 25.8349,
+    "seqcst_total": 1000000,
+    "seqcst_ms": 20.6221
+  },
+  "handoff": {
+    "ordered_successes": 200,
+    "ordered_trials": 200,
+    "ordered_ms": 15.4334,
+    "relaxed_successes": 200,
+    "relaxed_trials": 200,
+    "relaxed_ms": 16.495
+  },
+  "move_bench": {
+    "elements": 200000,
+    "reps": 50,
+    "copy_count": 50,
+    "copy_ms": 83.5614,
+    "move_count": 50,
+    "move_ms": 3.52111,
+    "checksum": 150.0
+  },
+  "gpu_benchmark_rows_verified": 9,
+  "profiler_cases": 3,
+  "gpu_device": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "compile_route_attempted": true,
+  "compile_route_success": false,
+  "custom_kernel_compiled": false,
+  "custom_kernel_note": "fused_softmax.cu is written only; no CUDA toolkit on the fleet GPU node, so it was not compiled or run"
+}
