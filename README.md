@@ -24,8 +24,8 @@ level-3-deep/cuda/fused_softmax.cu) are written but UNCOMPILED
 and have never run, because the fleet GPU node has no CUDA
 toolkit (nvcc not on PATH, torch reports CUDA_HOME None).
 Compiling and running them is v1.1 backlog item 1 in
-ROADMAP.md. Deep grade: 7,900 of 10,000, deductions named in
-level-3-deep/README.md.
+ROADMAP.md. Level grades, of 10,000, deductions named in each
+level README: Learn 8,300, Build 8,200, Deep 7,900.
 Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 
 ## Start here
@@ -68,6 +68,18 @@ notes: level-1-learn/README.md.
 | Deep profiler rows verified (PyTorch routes, RTX 5050) | 9 of 9 within 1 percent, all correct true, no custom rows |
 | Deep atomics | relaxed and seq_cst totals both exactly 1000000; handoff 200 of 200 ordered |
 | Deep move bench | 50 copies 83.5614 ms, 50 moves 3.52111 ms, counts exact |
+
+## Fan-out
+
+Written fan-out set for v1.0, dated 2026-11-05, in fanout/:
+blog post (fanout/blog-post.md), step-by-step tutorial
+(fanout/tutorial.md), website page copy (fanout/website-page.md),
+LinkedIn post draft, not posted (fanout/linkedin-post.md), paper
+candidate brief for the fused against unfused profiler note,
+nothing submitted (fanout/paper-candidate.md), and draft release
+notes for v0.1, v0.5, and v1.0 (fanout/release-notes.md). Channel
+outcomes and per-piece publicity grades are logged in
+PUBLICITY.md at the repo root.
 
 ## Novelty
 
