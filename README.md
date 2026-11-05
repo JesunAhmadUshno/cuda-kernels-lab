@@ -2,9 +2,22 @@
 
 CUDA kernels from vector add to a fused attention kernel, plus a standalone C++ benchmark tool.
 
-Status: Level 1 Learn DONE, 2026-11-05 (CPU reference edition, no
-CUDA GPU ran this cycle; BlackBox unreachable, GPU runs are Build
-and Deep scope). Levels 2 and 3 are scaffold only.
+Status: Level 1 Learn DONE and Level 2 Build DONE, 2026-11-05.
+Build headline numbers: 16 C++ tests pass, 30 Python tests pass,
+the debugging session captured a real AddressSanitizer
+heap-buffer-overflow WRITE and the fixed tool runs clean under
+ASan and UBSan, and 4 stored GPU benchmark rows verify by
+recomputation within 1 percent. The GPU rows are PyTorch native
+ops on the NVIDIA GeForce RTX 5050 Laptop GPU (median, CUDA
+events): vector add 381.3 GB/s at n = 4194304, matmul 6764.67
+GFLOP/s at 1024, softmax rows 848.71 GB/s at 4096 by 1024.
+Named kernel blocker: the custom CUDA kernels in
+level-2-build/cuda/kernels.cu are written but UNCOMPILED and
+have never run, because the fleet GPU node has no CUDA toolkit
+in PATH or CUDA_PATH this cycle (torch reports CUDA_HOME None)
+and a Numba route failed on compute capability 12.0 support.
+Compiling and running kernels.cu is the first Deep item. Level
+3 is scaffold only.
 Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 
 ## Start here
@@ -36,6 +49,10 @@ notes: level-1-learn/README.md.
 | Matmul loads, 8x8 tile 2 | naive 1024, tiled 512 |
 | Matmul loads, 16x16 tile 4 | naive 8192, tiled 2048 |
 | C++ bench tool self check (g++ -std=c++17) | vector_add PASS, matmul_tiled_2x2 PASS, ALL PASS |
+| Build C++ tests (level-2-build/cpp/tests.cpp) | 16 pass, 0 failed |
+| Build Python tests (tests/test_build_kernels.py) | 18 pass (30 total with Learn) |
+| Build ASan session | heap-buffer-overflow WRITE captured at buggy.cpp:78, fixed tool clean under ASan and UBSan |
+| GPU rows verified (PyTorch native ops, RTX 5050) | 4 of 4 within 1 percent, all correct true |
 
 ## Novelty
 
