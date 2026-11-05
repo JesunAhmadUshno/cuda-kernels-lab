@@ -1,0 +1,7 @@
+{
+  "cpp_tests_passed": 16,
+  "asan_session_status": "recorded_and_fixed_clean",
+  "gpu_rows_verified": 4,
+  "gpu_device": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "gpu_note": "PyTorch native ops only; custom CUDA kernels in cuda/kernels.cu are written but not compiled or run (no CUDA toolkit on the fleet GPU node)"
+}
