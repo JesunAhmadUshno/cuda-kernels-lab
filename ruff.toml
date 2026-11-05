@@ -1,0 +1,10 @@
+# Lint scope for this repo (Actions polish pack, 2026-11-05).
+# E: pycodestyle errors, F: pyflakes, I: import order.
+# Level folders and tests load sibling modules by path: each file inserts
+# its folder into sys.path before importing, so those imports carry
+# "# noqa: E402" markers where needed, which are live under this selection.
+# Line length is 120. Any import lines joined per ruff fix output change
+# no imported name or string value.
+line-length = 120
+[lint]
+select = ["E", "F", "I"]

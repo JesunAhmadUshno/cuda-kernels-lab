@@ -13,8 +13,7 @@ import unittest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "level-1-learn"))
-from kernels import (matmul_naive, matmul_tiled, softmax_naive,
-                     softmax_stable, vector_add)
+from kernels import matmul_naive, matmul_tiled, softmax_naive, softmax_stable, vector_add  # noqa: E402
 
 
 class TestVectorAdd(unittest.TestCase):
