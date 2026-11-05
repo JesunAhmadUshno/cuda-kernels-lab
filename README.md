@@ -2,22 +2,30 @@
 
 CUDA kernels from vector add to a fused attention kernel, plus a standalone C++ benchmark tool.
 
-Status: Level 1 Learn DONE and Level 2 Build DONE, 2026-11-05.
-Build headline numbers: 16 C++ tests pass, 30 Python tests pass,
-the debugging session captured a real AddressSanitizer
-heap-buffer-overflow WRITE and the fixed tool runs clean under
-ASan and UBSan, and 4 stored GPU benchmark rows verify by
-recomputation within 1 percent. The GPU rows are PyTorch native
-ops on the NVIDIA GeForce RTX 5050 Laptop GPU (median, CUDA
-events): vector add 381.3 GB/s at n = 4194304, matmul 6764.67
-GFLOP/s at 1024, softmax rows 848.71 GB/s at 4096 by 1024.
-Named kernel blocker: the custom CUDA kernels in
-level-2-build/cuda/kernels.cu are written but UNCOMPILED and
-have never run, because the fleet GPU node has no CUDA toolkit
-in PATH or CUDA_PATH this cycle (torch reports CUDA_HOME None)
-and a Numba route failed on compute capability 12.0 support.
-Compiling and running kernels.cu is the first Deep item. Level
-3 is scaffold only.
+Status: Level 1 Learn DONE, Level 2 Build DONE, and Level 3
+Deep DONE, 2026-11-05. Release v1.0.
+Deep headline numbers: a profiler study on the fleet GPU node
+(NVIDIA GeForce RTX 5050 Laptop GPU, torch 2.11.0+cu128, CUDA
+events, median) with 9 measured rows verified by recomputation
+within 1 percent: matmul (native op) 7642.29 GFLOP/s at 1024,
+softmax native fused op 604.58 GB/s at 4096 by 1024 against
+155.13 GB/s for the unfused manual sequence at the same size
+(a factor of 3.9), with a stage profile and torch.profiler op
+counts. The C++ Deep track: 15 new C++ tests (31 C++ total
+with Build), both tools clean under ASan and UBSan, an
+atomics counter reaching exactly 1000000 under relaxed and
+seq_cst ordering, a producer-consumer handoff at 200 of 200
+under acquire-release, and a move benchmark with exact counts
+(50 copies in 83.5614 ms, 50 moves in 3.52111 ms for a
+200000-double buffer). 46 Python tests pass.
+Named kernel blocker, unchanged: the custom CUDA kernels
+(level-2-build/cuda/kernels.cu and the Deep fused kernel in
+level-3-deep/cuda/fused_softmax.cu) are written but UNCOMPILED
+and have never run, because the fleet GPU node has no CUDA
+toolkit (nvcc not on PATH, torch reports CUDA_HOME None).
+Compiling and running them is v1.1 backlog item 1 in
+ROADMAP.md. Deep grade: 7,900 of 10,000, deductions named in
+level-3-deep/README.md.
 Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 
 ## Start here
@@ -26,6 +34,7 @@ Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 2. Read DOSSIER.md for the past, present, and future of this problem (v1).
 3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
 4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+5. Read ROADMAP.md for the v1.1 backlog beyond v1.0.
 
 ## Level map
 
@@ -53,6 +62,12 @@ notes: level-1-learn/README.md.
 | Build Python tests (tests/test_build_kernels.py) | 18 pass (30 total with Learn) |
 | Build ASan session | heap-buffer-overflow WRITE captured at buggy.cpp:78, fixed tool clean under ASan and UBSan |
 | GPU rows verified (PyTorch native ops, RTX 5050) | 4 of 4 within 1 percent, all correct true |
+| Deep C++ tests (level-3-deep/cpp/tests_deep.cpp) | 15 pass, 0 failed (31 C++ total) |
+| Deep Python tests (tests/test_deep_kernels.py) | 16 pass (46 total) |
+| Deep sanitizers | Deep tool and Build tool CLEAN under ASan and UBSan |
+| Deep profiler rows verified (PyTorch routes, RTX 5050) | 9 of 9 within 1 percent, all correct true, no custom rows |
+| Deep atomics | relaxed and seq_cst totals both exactly 1000000; handoff 200 of 200 ordered |
+| Deep move bench | 50 copies 83.5614 ms, 50 moves 3.52111 ms, counts exact |
 
 ## Novelty
 

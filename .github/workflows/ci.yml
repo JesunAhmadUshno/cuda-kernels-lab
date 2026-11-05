@@ -28,3 +28,13 @@ jobs:
           /tmp/cpp_tests
           g++ -std=c++17 -fsanitize=address,undefined -g level-2-build/cpp/tool.cpp -o /tmp/tool_asan
           /tmp/tool_asan
+      - name: Level 3 Deep unit tests
+        run: python -m unittest tests.test_deep_kernels -v
+      - name: Level 3 Deep runner
+        run: python level-3-deep/run_deep.py
+      - name: Level 3 C++ Deep tests compile and run (g++ on ubuntu-latest)
+        run: |
+          g++ -std=c++17 -O2 -Wall -Wextra level-3-deep/cpp/tests_deep.cpp -o /tmp/tests_deep -pthread
+          /tmp/tests_deep
+          g++ -std=c++17 -fsanitize=address,undefined -g level-3-deep/cpp/deep_tool.cpp -o /tmp/deep_asan -pthread
+          /tmp/deep_asan
