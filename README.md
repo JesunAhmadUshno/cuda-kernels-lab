@@ -2,7 +2,9 @@
 
 CUDA kernels from vector add to a fused attention kernel, plus a standalone C++ benchmark tool.
 
-Status: SCAFFOLD (Wave 0, ROADMAP-V3-BATCH, 2026-11-04). Scaffold is not built. No results exist yet.
+Status: Level 1 Learn DONE, 2026-11-05 (CPU reference edition, no
+CUDA GPU ran this cycle; BlackBox unreachable, GPU runs are Build
+and Deep scope). Levels 2 and 3 are scaffold only.
 Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 
 ## Start here
@@ -20,9 +22,20 @@ Project: P04. Fleet node: BlackBox (GPU). Wave: Wave 2.
 
 ## Benchmarks
 
+CPU reference counts only, Level 1 Learn, 2026-11-05. Method:
+exact operation and load counts from the loop structure in
+level-1-learn/kernels.py, run by level-1-learn/run_learn.py. No
+wall time and no GPU number is claimed. Full table and teaching
+notes: level-1-learn/README.md.
+
 | Test | Result |
 | --- | --- |
-| NO RESULTS YET | No measurement has run. This table fills only with measured numbers, with method. |
+| Correctness checks (run_learn.py) | 5 of 5 PASS |
+| Unit tests (tests/test_learn_kernels.py) | 12 pass |
+| Matmul loads, 4x4 tile 2 | naive 128, tiled 64 |
+| Matmul loads, 8x8 tile 2 | naive 1024, tiled 512 |
+| Matmul loads, 16x16 tile 4 | naive 8192, tiled 2048 |
+| C++ bench tool self check (g++ -std=c++17) | vector_add PASS, matmul_tiled_2x2 PASS, ALL PASS |
 
 ## Novelty
 
