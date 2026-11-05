@@ -1,0 +1,202 @@
+{
+  "stage_profile_softmax_4096x1024": [
+    {
+      "stage": "amax (row max)",
+      "median_ms": 0.0218
+    },
+    {
+      "stage": "exp(x - max)",
+      "median_ms": 0.1464
+    },
+    {
+      "stage": "sum (row sum)",
+      "median_ms": 0.0222
+    },
+    {
+      "stage": "div (normalise)",
+      "median_ms": 0.0908
+    },
+    {
+      "stage": "unfused full sequence",
+      "median_ms": 0.2147
+    },
+    {
+      "stage": "native fused softmax (single op)",
+      "median_ms": 0.0572
+    }
+  ],
+  "device": "NVIDIA GeForce RTX 5050 Laptop GPU",
+  "compute_capability": "12.0",
+  "torch_version": "2.11.0+cu128",
+  "cuda_home": null,
+  "nvcc_on_path": false,
+  "compile_softmax": {
+    "attempted": true,
+    "success": false,
+    "error": "TritonMissing: Cannot find a working triton installation. Either the package is not installed or it is too old. More information on installing Triton can be found at: https://github.com/triton-lang/triton\n\nSet TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS=\"+dynamo\"\n"
+  },
+  "note": "PyTorch routes only: native op, unfused manual (native ops), and compiled when it runs. No custom CUDA kernel rows: no CUDA toolkit on this node.",
+  "benchmarks": [
+    {
+      "kernel": "matmul_torch",
+      "route": "native op",
+      "size": 512,
+      "median_ms": 0.0495,
+      "gflops": 5422.94,
+      "correct": true
+    },
+    {
+      "kernel": "matmul_torch",
+      "route": "native op",
+      "size": 1024,
+      "median_ms": 0.281,
+      "gflops": 7642.29,
+      "correct": true
+    },
+    {
+      "kernel": "matmul_torch",
+      "route": "native op",
+      "size": 2048,
+      "median_ms": 2.8775,
+      "gflops": 5970.42,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_torch",
+      "route": "native op",
+      "rows": 4096,
+      "cols": 1024,
+      "median_ms": 0.0555,
+      "gb_per_s": 604.58,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_unfused_manual",
+      "route": "unfused manual (native ops)",
+      "rows": 4096,
+      "cols": 1024,
+      "median_ms": 0.2163,
+      "gb_per_s": 155.13,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_torch",
+      "route": "native op",
+      "rows": 2048,
+      "cols": 2048,
+      "median_ms": 0.0597,
+      "gb_per_s": 562.05,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_unfused_manual",
+      "route": "unfused manual (native ops)",
+      "rows": 2048,
+      "cols": 2048,
+      "median_ms": 0.2147,
+      "gb_per_s": 156.29,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_torch",
+      "route": "native op",
+      "rows": 8192,
+      "cols": 512,
+      "median_ms": 0.0595,
+      "gb_per_s": 563.94,
+      "correct": true
+    },
+    {
+      "kernel": "softmax_rows_unfused_manual",
+      "route": "unfused manual (native ops)",
+      "rows": 8192,
+      "cols": 512,
+      "median_ms": 0.2164,
+      "gb_per_s": 155.06,
+      "correct": true
+    }
+  ],
+  "profiler": [
+    {
+      "case": "matmul_1024",
+      "route": "native op",
+      "reps": 10,
+      "cuda_activity_available": false,
+      "kernel_count_total": 0,
+      "distinct_kernels": 0,
+      "total_cuda_time_us": 0.0,
+      "top_kernels": [],
+      "aten_ops": [
+        {
+          "name": "aten::matmul",
+          "count": 10,
+          "cpu_time_us": 275.3
+        },
+        {
+          "name": "aten::mm",
+          "count": 10,
+          "cpu_time_us": 260.1
+        }
+      ]
+    },
+    {
+      "case": "softmax_4096x1024",
+      "route": "native op",
+      "reps": 10,
+      "cuda_activity_available": false,
+      "kernel_count_total": 0,
+      "distinct_kernels": 0,
+      "total_cuda_time_us": 0.0,
+      "top_kernels": [],
+      "aten_ops": [
+        {
+          "name": "aten::softmax",
+          "count": 10,
+          "cpu_time_us": 80.6
+        },
+        {
+          "name": "aten::_softmax",
+          "count": 10,
+          "cpu_time_us": 69.7
+        }
+      ]
+    },
+    {
+      "case": "softmax_4096x1024",
+      "route": "unfused manual (native ops)",
+      "reps": 10,
+      "cuda_activity_available": false,
+      "kernel_count_total": 0,
+      "distinct_kernels": 0,
+      "total_cuda_time_us": 0.0,
+      "top_kernels": [],
+      "aten_ops": [
+        {
+          "name": "aten::amax",
+          "count": 10,
+          "cpu_time_us": 77.4
+        },
+        {
+          "name": "aten::sub",
+          "count": 10,
+          "cpu_time_us": 71.8
+        },
+        {
+          "name": "aten::exp",
+          "count": 10,
+          "cpu_time_us": 55.8
+        },
+        {
+          "name": "aten::sum",
+          "count": 10,
+          "cpu_time_us": 72.7
+        },
+        {
+          "name": "aten::div",
+          "count": 10,
+          "cpu_time_us": 60.2
+        }
+      ]
+    }
+  ]
+}
