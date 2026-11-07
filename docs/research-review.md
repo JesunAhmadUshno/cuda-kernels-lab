@@ -122,11 +122,7 @@ recomputed and nothing unrun is reported as a result.
 - Tests: 46 Python tests and 31 C++ tests pass locally; the site
   check is part of the site build.
 - Site dependencies are exact-pinned (react 18.3.1, react-dom
-  18.3.1, vite 5.4.11, @vitejs/plugin-react 4.3.4). `npm audit
-  --omit=dev` reports 0 vulnerabilities for what ships. A full
-  `npm audit` flags the vite development server (advisories cover
-  every vite release up to 6.4.3); the pinned version is a standing
-  constraint for these portfolio sites, the dev server is never
-  deployed, and the published site is static files only. Upgrading
-  vite closes it.
+  18.3.1, vite 6.4.5, @vitejs/plugin-react 4.3.4). A full
+  `npm audit` in `site/` (dev dependencies included) reports 0
+  vulnerabilities, and the published site is static files only.
 - No secrets, no external scripts; fonts load from Google Fonts.
