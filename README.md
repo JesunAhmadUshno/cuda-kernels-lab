@@ -2,6 +2,15 @@
 
 CUDA kernels from vector add to a fused attention kernel, plus a standalone C++ benchmark tool.
 
+Live dashboard: https://jesunahmadushno.github.io/cuda-kernels-lab/
+
+The dashboard (source in site/) reads every number from the
+level-*/results*.json files and the level write-ups at build time.
+The tiling, matmul and softmax calculators run in the browser; the
+GPU and C++ numbers are labelled replays of the recorded runs; the
+fused-kernel figure is labelled a prediction. A research-rubric
+review of the repo is in docs/research-review.md.
+
 Status: Level 1 Learn DONE, Level 2 Build DONE, and Level 3
 Deep DONE, 2026-11-05. Release v1.0.
 Deep headline numbers: a profiler study on the fleet GPU node
