@@ -10,6 +10,7 @@ import buildMd from '../../level-2-build/README.md?raw';
 import deepMd from '../../level-3-deep/README.md?raw';
 import debugMd from '../../level-2-build/DEBUG-SESSION.md?raw';
 import roadmapMd from '../../ROADMAP.md?raw';
+import analysisMd from '../../level-3-deep/cuda/ANALYSIS.md?raw';
 import {
   naiveLoads, tiledSlots, tiledInBounds, multiplies, adds, detMatrix, matmulNaive, matmulTiled,
   softmaxNaive, softmaxStable, overflowAt, recompute, relDiff, softmaxGBs, predictMs,
@@ -26,6 +27,7 @@ const RUN_DATE = deepMd.match(/Status: DONE, (\d{4}-\d{2}-\d{2})/)[1];
 const grade = (md) => md.match(/^(\d,\d{3}) of 10,000/m)[1];
 const GRADES = [['Learn', grade(learnMd)], ['Build', grade(buildMd)], ['Deep', grade(deepMd)]];
 const PY_TESTS = readmeMd.match(/(\d+) Python tests pass/)[1];
+const MAX_COLS = +analysisMd.match(/Rows over (\d+) columns/)[1];
 const DEBUG_CASE = debugMd.match(/n = (\d+) at tile = (\d+)/);
 const ASAN = debugMd.match(/SUMMARY: AddressSanitizer: (\S+) \S*?(buggy\.cpp:\d+)/);
 const ROADMAP = [...roadmapMd.split('## v1.1 backlog, in order')[1].split('## Standing rules')[0].matchAll(/^(\d+)\. (.+?)\.(?=\s)/gm)].map((m) => [m[1], m[2]]);
@@ -500,7 +502,7 @@ function Stages() {
         </div>
         <Recorded />
       </div>
-      <Bars label="Per-stage median milliseconds for unfused softmax at 4096 by 1024" unit="ms" rows={st.map((s) => ({ k: s.stage, v: s.median_ms, c: color(s.stage) }))} />
+      <Bars label={`Per-stage median milliseconds for unfused softmax at ${NATIVE.rows} by ${NATIVE.cols}`} unit="ms" rows={st.map((s) => ({ k: s.stage, v: s.median_ms, c: color(s.stage) }))} />
     </section>
   );
 }
@@ -533,7 +535,7 @@ function Fused() {
         <Range label="Columns" value={cols} min={128} max={4096} step={128} onChange={setCols} show={fmt(cols)} />
         <Range label="Assumed bandwidth" value={bw} min={100} max={1200} step={0.01} onChange={setBw} show={`${fx(bw)} GB/s`} />
       </div>
-      {passes === 3 && cols > 1024 && <p className="pill bad" role="alert" style={{ whiteSpace: 'normal' }}>Over 1024 columns the kernel's shared exp cache overflows; ANALYSIS.md says the harness must refuse this launch.</p>}
+      {passes === 3 && cols > MAX_COLS && <p className="pill bad" role="alert" style={{ whiteSpace: 'normal' }}>Over {MAX_COLS} columns the kernel's shared exp cache overflows; ANALYSIS.md says the harness must refuse this launch.</p>}
       <Bars label="Predicted median against recorded medians at the same shape" unit="ms" rows={bars} max={Math.max(...bars.map((b) => b.v), UNFUSED.median_ms) * 1.12} />
       <p className="hint">{rec.length ? `Green and red bars are recorded PyTorch medians at ${rows}×${cols}.` : `No recorded run at ${rows}×${cols}; recorded shapes are ${SHAPES.join(', ')}.`} Traffic {fx(passes * rows * cols * 4 / 2 ** 20, 1)} MiB per call.</p>
     </section>

@@ -84,3 +84,5 @@ console.log('lab ok', {
   gpuRows: prof.benchmarks.length + bench.benchmarks.length,
   predictedMs: predicted,
 });
+// The site reads the fused kernel's column limit from ANALYSIS.md.
+assert.equal(+analysis.match(/Rows over (\d+) columns/)[1], 1024);
