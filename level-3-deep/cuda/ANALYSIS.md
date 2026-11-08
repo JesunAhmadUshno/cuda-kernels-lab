@@ -25,8 +25,7 @@ header in ../results_profiler.json carries the live fields):
 
 Consequence, stated plainly: there are no custom kernel timings,
 no custom kernel correctness results, and no occupancy numbers
-for fused_softmax.cu anywhere in this repo. The grade in
-../README.md carries this as its largest deduction.
+for fused_softmax.cu anywhere in this repo.
 
 ## What the kernel does differently
 

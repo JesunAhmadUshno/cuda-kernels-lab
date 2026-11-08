@@ -6,7 +6,7 @@
 // cycle: nvcc is not on PATH, CUDA_PATH is empty, and torch
 // reports CUDA_HOME as None (verified 2026-11-05, see
 // ANALYSIS.md in this folder). Compiling and running this kernel
-// is v1.1 backlog item 1 in the repo-root ROADMAP.md. No timing,
+// is v1.1 backlog item 1 in REPORT.md. No timing,
 // correctness, or occupancy claim is made for it anywhere in
 // this repo.
 //

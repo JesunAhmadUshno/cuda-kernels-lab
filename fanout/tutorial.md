@@ -73,7 +73,7 @@ Read your results:
 
 ## Step 2: Level 2, Build, C++ tool, debugging, GPU rows
 
-Read level-2-build/README.md, level-2-build/BUILD-SPEC.md, and
+Read level-2-build/README.md, PROPOSAL.md (Level 2 Build spec), and
 level-2-build/DEBUG-SESSION.md. The Build tool carries vector
 add, tiled matmul with guarded edges, and stable softmax. Its
 16 tests use a self-contained assertion runner. The debugging
@@ -121,7 +121,7 @@ Read your results:
 
 ## Step 3: Level 3, Deep, profiler study and C++ Deep track
 
-Read level-3-deep/README.md, level-3-deep/DEEP-SPEC.md, and
+Read level-3-deep/README.md, PROPOSAL.md (Level 3 Deep spec), and
 level-3-deep/cuda/ANALYSIS.md. This is a compressed Deep. The
 profiler study runs on PyTorch routes only, every row labelled
 by route. The custom fused softmax kernel is a written
@@ -215,7 +215,7 @@ all passing, and the scaffold smoke test PASS.
   kernel result exists in v1.0.
 - The custom CUDA kernels need a CUDA toolkit to compile.
   Installing one on the fleet GPU node is v1.1 backlog item 1
-  in ROADMAP.md at the repo root.
+  in REPORT.md (v1.1 backlog) at the repo root.
 - GPU numbers are one laptop GPU in committed runs, with
   named clock variance across runs. Ratios inside one run are
   the stable finding.

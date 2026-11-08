@@ -5,7 +5,7 @@
 // tool (level-2-build/cpp/tool.cpp) behind its no-main guard, so
 // the Deep binary runs the same VectorAdd, MatmulTiled and
 // SoftmaxStable functions the Build shipped, and adds the two
-// Deep items from SPEC.md:
+// Deep items from PROPOSAL.md:
 //
 // 1. Atomics and memory ordering, measured. An atomic counter is
 //    incremented by several threads under relaxed ordering and

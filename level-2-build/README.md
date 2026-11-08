@@ -1,13 +1,13 @@
 # Level 2, Build: cuda-kernels-lab
 
-Status: DONE, 2026-11-05. Spec: BUILD-SPEC.md in this folder.
+Status: DONE, 2026-11-05. Spec: PROPOSAL.md (Level 2 Build spec).
 
 ## Build scope
 
-From SPEC.md, the Build level plus the Added track: tests on the
+From PROPOSAL.md, the Build level plus the Added track: tests on the
 standalone C++ tool, and one debugging session written up from a
 real crash. Two named substitutions, both recorded in
-BUILD-SPEC.md:
+PROPOSAL.md (Level 2 Build spec):
 
 - Test framework: a self-contained assertion runner
   (cpp/tests.cpp) instead of GoogleTest or Catch2. Neither was
@@ -117,16 +117,3 @@ Named blocker, stated plainly:
   kernels.cu, run its harness checks, and only then publish
   custom kernel numbers next to the PyTorch table.
 
-## Grade
-
-8,200 of 10,000. Deductions: custom CUDA kernels written but not
-compiled or run, toolkit missing on the GPU node (minus 1,200,
-the largest; this is why no custom kernel number exists and Deep
-opens with the compile); debugging session sanitizer-led instead
-of gdb, because gdb is not installed on the build machine
-(minus 200); C++ tests use a self-contained runner instead of
-GoogleTest or Catch2, a named deviation with no vendored
-dependency in the repo (minus 200); GPU benchmark rows are
-PyTorch native ops on one device with stored medians rounded to
-4 significant figures, verified by recomputation only, not
-re-measured this cycle (minus 200).

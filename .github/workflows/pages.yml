@@ -7,7 +7,7 @@ name: Pages
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'level-*/results*.json', 'level-*/README.md', 'level-2-build/DEBUG-SESSION.md', 'level-3-deep/cuda/ANALYSIS.md', 'README.md', 'ROADMAP.md', '.github/workflows/pages.yml']
+    paths: ['site/**', 'level-*/results*.json', 'level-*/README.md', 'level-2-build/DEBUG-SESSION.md', 'level-3-deep/cuda/ANALYSIS.md', 'README.md', 'REPORT.md', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:

@@ -64,13 +64,13 @@ for (const row of [...prof.benchmarks, ...bench.benchmarks]) {
 }
 assert.equal(prof.benchmarks.length, deep.gpu_benchmark_rows_verified);
 
-// 5. Fused-kernel prediction reproduces ANALYSIS.md, and the headline ratio reproduces the README.
+// 5. Fused-kernel prediction reproduces ANALYSIS.md, and the headline ratio reproduces the README Headline.
 const native = prof.benchmarks.find((r) => r.kernel === 'softmax_rows_torch' && r.rows === 4096);
 const unfused = prof.benchmarks.find((r) => r.kernel === 'softmax_rows_unfused_manual' && r.rows === 4096);
 const analysis = read('level-3-deep/cuda/ANALYSIS.md');
 const predicted = analysis.match(/median near (\d+\.\d+) ms/)[1];
 assert.equal(predictMs(4096, 1024, 3, native.gb_per_s).toFixed(3), predicted);
-assert.equal((unfused.median_ms / native.median_ms).toFixed(1), read('README.md').match(/a factor\s+of (\d+\.\d)/)[1]);
+assert.equal((unfused.median_ms / native.median_ms).toFixed(1), read('README.md').match(/ran\s+(\d+\.\d)\s+times\s+faster/)[1]);
 // "each one materialises a full 16 MiB intermediate"
 assert.equal(MiB(4096 * 1024 * 4), 16);
 // Per-route model: amax 1 + sub 2 + exp 2 + sum 1 + div 2 = 8 passes.

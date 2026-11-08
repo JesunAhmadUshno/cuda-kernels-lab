@@ -1,15 +1,15 @@
 # Level 3, Deep: cuda-kernels-lab
 
-Status: DONE, 2026-11-05. Spec: DEEP-SPEC.md in this folder.
+Status: DONE, 2026-11-05. Spec: PROPOSAL.md (Level 3 Deep spec).
 Compressed Deep: the single hardest capability (profiler and
 fused-kernel work, plus the SPEC C++ Deep track), with the
-toolkit substitution named in DEEP-SPEC.md, never silent. The
+toolkit substitution named in PROPOSAL.md (Level 3 Deep spec), never silent. The
 rest of the v2 Deep scope is the v1.1 backlog in the repo-root
-ROADMAP.md.
+REPORT.md (v1.1 backlog).
 
 ## What is here
 
-- DEEP-SPEC.md: scope, decisions, acceptance criteria.
+- The Deep spec, now a section of the repo-root PROPOSAL.md: scope, decisions, acceptance criteria.
 - profiler_bench.py: the GPU profiler and timing script, run on
   the fleet GPU node (BlackBox) this cycle. Its output is
   results_profiler.json, committed as produced.
@@ -252,21 +252,3 @@ Named blocker, stated plainly, unchanged from Build:
   in size checks, silently in element loops that tolerate
   empty ranges.
 
-## Grade
-
-7,900 of 10,000. Deductions: custom CUDA kernel written but
-not compiled or run, toolkit missing on the GPU node (minus
-1,000, the largest; no custom kernel number exists because of
-it, and the fused comparison is against the native op instead
-of the project's own kernel); torch.compile route failed on
-the node by two recorded errors, so no compiled row exists
-(minus 300); CUPTI CUDA-activity profiler rows unavailable in
-the committed runs, profiler evidence rests on op counts plus
-CUDA-event tables (minus 250); C++ tests still use the
-self-contained runner instead of GoogleTest or Catch2, the
-named Build deviation carried into Deep (minus 200); GPU
-numbers are one laptop GPU in one committed run, with named
-clock variance across runs this cycle (minus 200); the
-atomics example runs on x86, whose strong memory model masks
-ordering differences, so the ordering cost and the relaxed
-hazard are argued, not demonstrated (minus 150).

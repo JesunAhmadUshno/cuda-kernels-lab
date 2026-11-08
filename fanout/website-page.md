@@ -26,8 +26,7 @@ CUDA toolkit.
 
 Status: v1.0, 2026-11-05. Learn, Build, and compressed Deep
 are done. Total Python tests: 46, all passing at v1.0. C++
-tests: 31 in total (16 Build, 15 Deep). Level grades (of
-10000): Learn 8300, Build 8200, Deep 7900.
+tests: 31 in total (16 Build, 15 Deep).
 
 ## Results
 
@@ -60,7 +59,7 @@ device and are kept separate.
 - GPU numbers are one laptop GPU, with named clock variance
   across runs. Ratios inside one run are the stable finding.
 - Compressed Deep is not the full v2 Deep scope. The
-  remainder is the v1.1 backlog in the repo ROADMAP.md,
+  remainder is the v1.1 backlog in the repo REPORT.md,
   item 1 being the custom kernel compile and run.
 
 ## Links

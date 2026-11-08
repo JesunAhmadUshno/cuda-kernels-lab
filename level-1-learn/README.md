@@ -7,7 +7,7 @@ are Build and Deep scope and are named NEEDS-BLACKBOX-ON in the batch
 ledger. What is built here teaches the same kernel structure on the
 CPU, and correctness is the claim, not speed.
 
-Scope for this level, from SPEC.md: CUDA kernels from vector add to
+Scope for this level, from PROPOSAL.md: CUDA kernels from vector add to
 tiled matmul, grown into one small standalone C++ tool (kernel launch
 and benchmark runner): smart pointers and RAII, templates and the
 STL, CMake build.
@@ -96,13 +96,3 @@ what this level proves.
   OverflowError on large inputs; production code uses the stable
   form only.
 
-## Grade
-
-8,300 of 10,000. Deductions: no GPU or CUDA run, BlackBox
-unreachable (minus 900, the largest, and the reason this is a CPU
-reference edition); no wall time or bandwidth benchmark, by design
-at Learn (minus 300); C++ tile cap of 8 and no CMake run in CI, g++
-direct only (minus 300); edge padding counted in tile loads, noted
-above (minus 200). Build scope from SPEC.md carries the rest: real
-CUDA kernels on BlackBox, GoogleTest or Catch2 tests on the tool,
-and a debugging session write up.

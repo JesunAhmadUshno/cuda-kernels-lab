@@ -43,8 +43,6 @@ including the fused softmax kernel, are written but were NOT
 compiled and have NOT run, because the GPU node has no CUDA
 toolkit (no nvcc). Compiling and running them is item 1 of the
 v1.1 backlog, and no custom kernel speed is claimed until then.
-Grades, with deductions named in the repo: Learn 8300, Build
-8200, Deep 7900 of 10000.
 
 If you write GPU code: what do you trust more, a profiler table
 or a single headline GFLOP/s number?
