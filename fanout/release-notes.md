@@ -33,8 +33,6 @@ Published: 2026-11-05
 - Limits carried in the release: CPU reference edition, no
   GPU ran and no GPU number is claimed (the GPU fleet node
   was unreachable in that cycle); counts only, no wall time.
-- Grade: 8300 of 10000, deductions named in
-  level-1-learn/README.md.
 
 ## v0.5, Build: C++ tool tests, debugging session, GPU rows
 
@@ -45,7 +43,7 @@ Published: 2026-11-05
 - The Learn C++ tool evolved: vector add, tiled matmul with
   counted tile loads and guarded edges, and stable softmax,
   with a 16-test self-contained assertion runner (a named
-  deviation from SPEC.md: no GoogleTest or Catch2 fetched or
+  deviation from PROPOSAL.md: no GoogleTest or Catch2 fetched or
   vendored).
 - Debugging session (level-2-build/DEBUG-SESSION.md): a tiled
   matmul variant missing its bounds guard produced a real
@@ -69,9 +67,6 @@ Published: 2026-11-05
   failed on compute capability 12.0 support.
 - Tests: 18 Build Python tests, 30 in total with Learn; 16
   C++ tests.
-- Grade: 8200 of 10000, deductions named in
-  level-2-build/README.md (largest: custom kernels
-  uncompiled, minus 1200).
 
 ## v1.0, Deep: profiler study, atomics and move benchmarks
 
@@ -82,8 +77,8 @@ Published: 2026-11-05
 - Compressed Deep under the December Compression Protocol:
   the single hardest capability (profiler and fused-kernel
   work, plus the SPEC C++ Deep track), with the toolkit
-  substitution named in DEEP-SPEC.md, never silent. The rest
-  of the v2 Deep scope is the v1.1 backlog in ROADMAP.md.
+  substitution named in PROPOSAL.md (Level 3 Deep spec), never silent. The rest
+  of the v2 Deep scope is the v1.1 backlog in REPORT.md.
 - Profiler study on PyTorch routes only (same device and
   torch version, CUDA events median, torch.profiler op
   counts), 9 rows verified by recomputation within 1
@@ -116,6 +111,3 @@ Published: 2026-11-05
   CUDA-activity rows were unavailable in the committed runs.
 - Tests: 16 Deep Python tests, 46 in total with Learn and
   Build.
-- Grade: 7900 of 10000, deductions named in
-  level-3-deep/README.md (largest: custom kernel
-  uncompiled, minus 1000).

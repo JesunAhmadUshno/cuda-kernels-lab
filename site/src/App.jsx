@@ -9,7 +9,7 @@ import learnMd from '../../level-1-learn/README.md?raw';
 import buildMd from '../../level-2-build/README.md?raw';
 import deepMd from '../../level-3-deep/README.md?raw';
 import debugMd from '../../level-2-build/DEBUG-SESSION.md?raw';
-import roadmapMd from '../../ROADMAP.md?raw';
+import reportMd from '../../REPORT.md?raw';
 import analysisMd from '../../level-3-deep/cuda/ANALYSIS.md?raw';
 import {
   naiveLoads, tiledSlots, tiledInBounds, multiplies, adds, detMatrix, matmulNaive, matmulTiled,
@@ -24,13 +24,12 @@ const fx = (n, d = 2) => Number(n).toLocaleString('en-US', { minimumFractionDigi
 
 // ---- facts read from the repo at build time ----
 const RUN_DATE = deepMd.match(/Status: DONE, (\d{4}-\d{2}-\d{2})/)[1];
-const grade = (md) => md.match(/^(\d,\d{3}) of 10,000/m)[1];
-const GRADES = [['Learn', grade(learnMd)], ['Build', grade(buildMd)], ['Deep', grade(deepMd)]];
-const PY_TESTS = readmeMd.match(/(\d+) Python tests pass/)[1];
+const VERDICT = readmeMd.match(/\*\*Verdict\.\*\* ([^.]+)\./)[1];
+const PY_TESTS = reportMd.match(/(\d+) Python tests pass/)[1];
 const MAX_COLS = +analysisMd.match(/Rows over (\d+) columns/)[1];
 const DEBUG_CASE = debugMd.match(/n = (\d+) at tile = (\d+)/);
 const ASAN = debugMd.match(/SUMMARY: AddressSanitizer: (\S+) \S*?(buggy\.cpp:\d+)/);
-const ROADMAP = [...roadmapMd.split('## v1.1 backlog, in order')[1].split('## Standing rules')[0].matchAll(/^(\d+)\. (.+?)\.(?=\s)/gm)].map((m) => [m[1], m[2]]);
+const ROADMAP = [...reportMd.split('## v1.1 backlog, in order')[1].split('## Standing rules')[0].matchAll(/^(\d+)\. (.+?)\.(?=\s)/gm)].map((m) => [m[1], m[2]]);
 const DEVICE_SHORT = prof.device.replace('NVIDIA GeForce ', '');
 const softmaxRows = prof.benchmarks.filter((r) => r.kernel.startsWith('softmax'));
 const matmulRows = prof.benchmarks.filter((r) => r.kernel === 'matmul_torch');
@@ -64,7 +63,7 @@ function MenuBar() {
     <div className="menubar" role="banner">
       <span className="apple" aria-hidden="true">◆</span>
       <a className="app" href="#top">CUDA Kernels Lab</a>
-      <a className="m" href={blob('SPEC.md')}>Spec</a>
+      <a className="m" href={blob('PROPOSAL.md')}>Proposal</a>
       <a className="m" href={blob('level-3-deep/README.md')}>Deep results</a>
       <a className="m" href={blob('level-3-deep/cuda/ANALYSIS.md')}>Kernel analysis</a>
       <span className="spacer" />
@@ -651,22 +650,22 @@ function Limits() {
           <div className="tile" key={t}><h3>{t}</h3><p className="hint" style={{ margin: '6px 0 0' }}>{d}</p></div>
         ))}
       </div>
-      <p className="hint" style={{ marginTop: 14 }}>Full grading against a research rubric: <a href={blob('docs/research-review.md')}>docs/research-review.md</a>.</p>
+      <p className="hint" style={{ marginTop: 14 }}>Full research review, misses and remaining gaps: <a href={blob('REPORT.md')}>REPORT.md</a>.</p>
     </section>
   );
 }
 
 function Roadmap() {
   const docs = [
-    ['SPEC.md', 'Spec', 'Scope and acceptance criteria'],
+    ['PROPOSAL.md', 'Proposal', 'Question, scope, draft hypotheses'],
     ['level-1-learn/README.md', 'Level 1 Learn', 'Kernels and load counts'],
     ['level-2-build/README.md', 'Level 2 Build', 'C++ tests, GPU benchmarks'],
     ['level-3-deep/README.md', 'Level 3 Deep', 'Profiler, atomics, move'],
     ['level-3-deep/cuda/ANALYSIS.md', 'Kernel analysis', 'Blocker and prediction'],
-    ['docs/research-review.md', 'Research review', 'Rubric grades and gaps'],
+    ['REPORT.md', 'Report', 'Results, misses, review and gaps'],
   ];
   return (
-    <section id="roadmap" className="card window reveal" data-title="ROADMAP.md — v1.1 backlog">
+    <section id="roadmap" className="card window reveal" data-title="REPORT.md — v1.1 backlog">
       <p className="eyebrow">Next</p>
       <h2>First job: <em>compile</em> the kernels.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
@@ -674,10 +673,8 @@ function Roadmap() {
           {ROADMAP.map(([n, t]) => <li key={n}><span className="box" aria-hidden="true" /><span><b>{n}.</b> {t}</span></li>)}
         </ol>
         <div>
-          <h3>Grades on record (of 10,000)</h3>
-          <div className="tiles" style={{ gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', marginTop: 10 }}>
-            {GRADES.map(([l, g]) => <div className="tile" key={l}><div className="num">{g}</div><div className="cap">{l}</div></div>)}
-          </div>
+          <h3>Verdict (portfolio standard v2)</h3>
+          <p className="hint" style={{ marginTop: 10 }}>{VERDICT}. Read from README.md; the reasons are in <a href={blob('REPORT.md')}>REPORT.md</a>.</p>
           <h3 style={{ marginTop: 18 }}>Reproduce the CPU side</h3>
           <ol className="steps" style={{ marginTop: 10 }}>
             <li><span className="n">1</span><div><code>python3 level-1-learn/run_learn.py</code></div></li>

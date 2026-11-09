@@ -122,7 +122,7 @@ v1.1, never as a result.
 
 ## Venue class note
 
-Per SPEC.md, the paper angle for P04 is the fused kernel
+Per PROPOSAL.md, the paper angle for P04 is the fused kernel
 benchmark note (own kernel against PyTorch, profiler output).
 Honest adjustment for v1.0: the own-kernel side of that angle
 does not exist yet, because the kernel did not run, so the
@@ -156,7 +156,7 @@ call under the free-only rule.
 - Compressed Deep only. The v1.1 backlog (custom kernel
   compile and run, fused attention variant, framework
   migration, CUPTI and compiled rows, second device, weakly
-  ordered run) is future work, named in ROADMAP.md in the
+  ordered run) is future work, named in REPORT.md (v1.1 backlog) in the
   repo.
 
 ## Submission gate

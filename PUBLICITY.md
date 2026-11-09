@@ -1,17 +1,12 @@
 # PUBLICITY: cuda-kernels-lab (P04)
 
 Publicity log under the documentation and publishing standard,
-Section 7. Every finished level produces its written fan-out set,
-each piece graded on the 1,000-point publicity rubric (accuracy 300,
-research 200, gap fit 200, clarity 150, reach format 150), ship line
-900. Drafts are prepared by the loop. Actual social posting follows
+Section 7. Every finished level produces its written fan-out set. Drafts are prepared by the loop. Actual social posting follows
 the standing platform rules and gates. The loop itself never posts
 to social.
 
 Project state: v1.0, Learn, Build, and compressed Deep done
-2026-11-05, 46 Python tests passing. Level grades in the level
-READMEs: Learn 8,300 of 10,000, Build 8,200 of 10,000, Deep 7,900
-of 10,000.
+2026-11-05, 46 Python tests passing.
 
 Fan-out set date: 2026-11-05 (Sprint 2 early work). Project state:
 v1.0, Learn, Build, and compressed Deep done 2026-11-05, 46 Python
@@ -36,7 +31,7 @@ in every fan-out piece, not footnoted away.
 | Instagram | Draft held: no Instagram copy posted. Standing rule applies (no clickable link in caption, link in bio). Held: not posted, loop never posts. |
 | Threads | Draft held: no Threads copy posted. Threads waits for Jesun's tap per post, hash-locked on exact text and media. Held: awaiting Jesun's tap. |
 | Video | Held: engine queue, January production for lab projects per the December Compression Protocol. No video was produced in this cycle. |
-| Book chapter | Draft angle in fanout/blog-post.md and SPEC.md ("Down To The Metal"). Held: chapter draft follows the finished project set; not a published chapter. |
+| Book chapter | Draft angle in fanout/blog-post.md and PROPOSAL.md ("Down To The Metal"). Held: chapter draft follows the finished project set; not a published chapter. |
 | Paper candidate | Draft brief in fanout/paper-candidate.md (fused against unfused profiler note). Submission is Jesun's tap. Nothing submitted, no venue contacted. The publications tracker is updated by the coordinator, not by this cycle. |
 
 ## Jev gate (2026-11-05)
@@ -53,55 +48,6 @@ hidden_files as jev-p04-fanout-claim-spec-2026-11-05.json and
 jev-p04-fanout-claim-results-2026-11-05.json. REVIEW means the
 claim ships as a reviewed draft piece, not as a cleared claim;
 no part of the paragraph was blocked.
-
-## Publicity grades (1,000-point rubric, ship line 900)
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach format /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| fanout/blog-post.md | 295 | 190 | 195 | 145 | 140 | 965 |
-| fanout/tutorial.md | 300 | 185 | 195 | 148 | 142 | 970 |
-| fanout/website-page.md | 295 | 180 | 190 | 148 | 145 | 958 |
-| fanout/linkedin-post.md | 290 | 175 | 190 | 145 | 140 | 940 |
-| fanout/paper-candidate.md | 295 | 195 | 195 | 140 | 130 | 955 |
-| fanout/release-notes.md | 298 | 185 | 185 | 145 | 135 | 948 |
-
-All six pieces are at or above the 900 ship line. No piece was
-shipped ungraded. Overall fan-out grade: 9,560 of 10,000 (the
-mean of the six piece grades, 956 of 1,000, scaled; deductions
-below are the per-piece named deductions, not rounded away).
-
-## Named deductions (unclosable in this cycle)
-
-- Blog post, minus 35: research is condensed from DOSSIER.md v1,
-  whose prior art section is brief (minus 10 research); every GPU
-  result is a PyTorch native op on one laptop GPU, which limits
-  how far the results travel, stated in the piece (minus 10
-  reach, minus 5 accuracy for reader interpretation risk, minus
-  5 gap fit, minus 5 clarity).
-- Tutorial, minus 30: research framing is thinner than the blog
-  by design, because the module teaches runs rather than the
-  field (minus 15 research); the module verifies stored GPU rows
-  by recomputation and cannot re-measure them or compile the
-  custom kernels (minus 5 gap fit, minus 2 clarity, minus 8
-  reach).
-- Website page, minus 42: condensed research (minus 20),
-  condensed gap framing (minus 10), and the page is copy only,
-  not a live page (minus 5 reach, minus 5 accuracy, minus 2
-  clarity).
-- LinkedIn post, minus 60: short form compresses the research
-  and the failure mode detail (minus 25 research, minus 10
-  accuracy, minus 10 gap fit, minus 5 clarity, minus 10 reach,
-  because the post is a held draft and carries no live link in
-  the body by rule).
-- Paper candidate, minus 45: this is a brief, not a drafted
-  paper (minus 20 reach, minus 10 clarity); venue is classed,
-  not named (minus 5 research, minus 5 gap fit, minus 5
-  accuracy, because the SPEC own-kernel angle cannot be claimed
-  until the kernel runs in v1.1).
-- Release notes, minus 52: notes summarise releases that
-  already exist, so research and gap framing are summary grade
-  (minus 15 research, minus 15 gap fit); format is repo-bound
-  (minus 15 reach, minus 2 accuracy, minus 5 clarity).
 
 ## Actions polish pack (2026-11-05)
 
@@ -139,19 +85,3 @@ nvcc is absent on the fleet GPU node.
 | PyPI publishing | Held: needs a PyPI token, a new credential. Jesun's tap only. Not set up. |
 | Social channels (LinkedIn, X, Facebook, Instagram, Threads) | Held: no posts made. The loop never posts to social; Threads waits for Jesun's tap per post under the standing gates. |
 
-Publicity grade for this polish pack log piece, on the 1,000
-point rubric (accuracy 300, research 200, gap fit 200, clarity
-150, reach format 150), ship line 900:
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| PUBLICITY.md polish pack section (2026-11-05) | 295 | 180 | 195 | 145 | 100 | 915 |
-
-At or above the 900 ship line. Named deductions: research minus
-20, because the pack is a standard applied across repos and this
-section records its application rather than new research; reach
-minus 50, because the docs page is copy in this pull request with
-no live Pages claim yet, PyPI publishing is held, and no social
-channel carries this piece by the standing gates; accuracy minus
-5, gap fit minus 5, and clarity minus 5 for summary compression
-of the full pack standard, which lives in the batch files.

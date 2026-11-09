@@ -124,4 +124,4 @@ failed, exit code 0, no sanitizer output.
 Edge sizes are where tile bugs live. Every tiled kernel test in
 this repo includes at least one size that is not a multiple of
 the tile, and Deep opens with the full tool under ASan and UBSan
-plus the atomics and memory ordering example (see SPEC.md).
+plus the atomics and memory ordering example (see PROPOSAL.md).

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "cuda-kernels-lab: CUDA kernels from vector add to a fused softmax, profiled against PyTorch"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/cuda-kernels-lab"
+url: "https://jesunahmadushno.github.io/cuda-kernels-lab/"
+license: Apache-2.0
+version: "1.0"
+date-released: 2026-11-05
