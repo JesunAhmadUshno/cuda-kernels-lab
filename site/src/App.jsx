@@ -115,7 +115,7 @@ const Recorded = ({ children = `recorded run, ${DEVICE_SHORT}, ${RUN_DATE}` }) =
 export default function App() {
   useReveal();
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -134,7 +134,7 @@ export default function App() {
       <footer>
         Code: Apache-2.0. Every number on this page is read at build time from <code>level-*/results*.json</code> and the level write-ups, or computed in your browser from them.
         GPU numbers are recorded PyTorch runs on one {DEVICE_SHORT}; the lab's own CUDA kernels have not been compiled.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -142,7 +142,7 @@ export default function App() {
 function Hero() {
   const ops = UNFUSED_PROFILE.aten_ops.length;
   return (
-    <header className="card hero window" id="top" data-title="cuda-kernels-lab — README.md">
+    <header className="card hero window" id="top" data-title="cuda-kernels-lab - README.md">
       <div className="head">
         <p className="eyebrow">GPU programming lab · three levels · recorded on {DEVICE_SHORT}</p>
         <span className="pill warn">● Custom kernels: written, not compiled</span>
@@ -224,7 +224,7 @@ function Tiling() {
   );
   const hl = (x, y, fill) => <rect x={x} y={y} width={t * sc} height={t * sc} fill={fill} opacity="0.55" rx="2" style={{ transition: 'x .3s, y .3s' }} />;
   return (
-    <section id="tiling" className="card window reveal" data-title="tiling.py — load counter (live)">
+    <section id="tiling" className="card window reveal" data-title="tiling.py - load counter (live)">
       <div className="head">
         <div>
           <p className="eyebrow">Level 1 · computed in your browser</p>
@@ -324,7 +324,7 @@ function Runner() {
     return { nv, tl, diff };
   }, [aTxt, bTxt, tile, valid]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
-    <section id="runner" className="card window reveal" data-title="matmul_runner.py — live">
+    <section id="runner" className="card window reveal" data-title="matmul_runner.py - live">
       <div className="head">
         <div>
           <p className="eyebrow">Level 1 · runs in your browser</p>
@@ -376,7 +376,7 @@ function Softmax() {
   const maxDev = ok ? Math.max(...st.map((v, i) => Math.abs(v - st0[i]))) : 0;
   const show = (v) => (Number.isFinite(v) ? v.toFixed(6) : String(v));
   return (
-    <section id="softmax" className="card window reveal" data-title="softmax_overflow.py — live">
+    <section id="softmax" className="card window reveal" data-title="softmax_overflow.py - live">
       <div className="head">
         <div>
           <p className="eyebrow">Numerics · float64 in your browser</p>
@@ -435,7 +435,7 @@ function Profiler() {
   const nat = !isMat && pick(view, 'native'), unf = !isMat && pick(view, 'unfused');
   const passes = unfusedPasses();
   return (
-    <section id="profiler" className="card window reveal" data-title="profiler_bench.json — recorded">
+    <section id="profiler" className="card window reveal" data-title="profiler_bench.json - recorded">
       <div className="head">
         <div>
           <p className="eyebrow">Level 3 Deep · replay of a recorded run</p>
@@ -489,7 +489,7 @@ function Stages() {
   const color = (s) => (s.startsWith('native') ? 'var(--good)' : s.startsWith('unfused') ? 'var(--bad)' : 'var(--primary)');
   const inter = MiB(NATIVE.rows * NATIVE.cols * 4);
   return (
-    <section id="stages" className="card window reveal" data-title="stage_profile.svg — recorded">
+    <section id="stages" className="card window reveal" data-title="stage_profile.svg - recorded">
       <div className="head">
         <div>
           <p className="eyebrow">Where the unfused time goes</p>
@@ -516,7 +516,7 @@ function Fused() {
   const bars = [{ k: `PREDICTED, ${PASS_OPTS.find((p) => p[0] === passes)[1]}`, v: ms, label: `${ms.toFixed(4)} ms`, c: 'var(--warn)' },
     ...rec.map((r) => ({ k: `recorded, ${r.route}`, v: r.median_ms, label: `${r.median_ms} ms`, c: r.route.startsWith('native') ? 'var(--good)' : 'var(--bad)' }))];
   return (
-    <section id="fused" className="card window reveal" data-title="fused_softmax.cu — traffic model">
+    <section id="fused" className="card window reveal" data-title="fused_softmax.cu - traffic model">
       <div className="head">
         <div>
           <p className="eyebrow">The lab's own kernel · never run</p>
@@ -545,7 +545,7 @@ function Variance() {
   const key = (r) => `${r.kernel}|${r.size ?? `${r.rows}x${r.cols}`}`;
   const pairs = bench.benchmarks.map((b) => [b, prof.benchmarks.find((d) => key(d) === key(b) && d.route === 'native op')]).filter(([, d]) => d);
   return (
-    <section id="variance" className="card window reveal" data-title="run_variance — same op, two sessions">
+    <section id="variance" className="card window reveal" data-title="run_variance - same op, two sessions">
       <div className="head">
         <div>
           <p className="eyebrow">Honest noise</p>
@@ -576,7 +576,7 @@ function Cpp() {
   const mb = deep.move_bench, at = deep.atomics, ho = deep.handoff;
   const expected = at.threads * at.per_thread;
   return (
-    <section id="cpp" className="card window reveal" data-title="deep_tool.cpp — recorded">
+    <section id="cpp" className="card window reveal" data-title="deep_tool.cpp - recorded">
       <div className="head">
         <div>
           <p className="eyebrow">C++ track · recorded run, x86 build VM, g++ -std=c++17</p>
@@ -665,7 +665,7 @@ function Roadmap() {
     ['REPORT.md', 'Report', 'Results, misses, review and gaps'],
   ];
   return (
-    <section id="roadmap" className="card window reveal" data-title="REPORT.md — v1.1 backlog">
+    <section id="roadmap" className="card window reveal" data-title="REPORT.md - v1.1 backlog">
       <p className="eyebrow">Next</p>
       <h2>First job: <em>compile</em> the kernels.</h2>
       <div className="grid2" style={{ marginTop: 16 }}>
